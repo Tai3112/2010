@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="https://png.pngtree.com/png-vector/20240208/ourmid/pngtree-cute-pastel-heart-sticker-decoration-png-image_11721063.png">
   <title>20/10 – Lá Thư Yêu Thương</title>
+
   <style>
     :root{--accent:#ff4d6d;}
     *{box-sizing:border-box;margin:0;padding:0}
@@ -12,8 +13,10 @@
       height:100vh;overflow-x:hidden;overflow-y:auto;
       font-family:'Segoe UI',sans-serif;
       background:linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
-      background-size:300% 300%;animation:bgMove 18s ease-in-out infinite;
-      position:relative;cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="14" font-size="16">💖</text></svg>'),auto;
+      background-size:300% 300%;
+      animation:bgMove 18s ease-in-out infinite;
+      position:relative;
+      cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="14" font-size="16">💖</text></svg>'),auto;
     }
     @keyframes bgMove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
@@ -48,76 +51,55 @@
     .tile{background:rgba(255,255,255,.3);padding:.6rem 1.2rem;border-radius:12px;backdrop-filter:blur(6px)}
     .tile strong{font-size:1.8rem;display:block}
 
-    /* 🌸 Lá thư canh giữa + gần đồng hồ hơn */
+    /* 💌 Section thư */
     #letter-section {
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      flex-direction:column;
-      margin-top:-2rem;
-      opacity:0;
-      transform:translateY(40px);
+      display:flex;justify-content:center;align-items:flex-start;flex-direction:column;
+      margin-top:-2rem;opacity:0;transform:translateY(40px);
       transition:all 1.6s cubic-bezier(.25,.8,.25,1);
     }
     .show-letter #letter-section{opacity:1;transform:translateY(0);}
     .letter-body{
       max-width:800px;margin:0 auto;background:rgba(255,255,255,.3);
       backdrop-filter:blur(10px);border-radius:16px;padding:2rem;
-      box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:0;
-      transform:translateY(-60px);
+      box-shadow:0 10px 20px rgba(0,0,0,.2);
     }
-    .show-letter .letter-body{animation:slideDownLetter 3s cubic-bezier(.25,.8,.25,1) forwards;}
-    @keyframes slideDownLetter{0%{opacity:0;transform:translateY(-60px);}100%{opacity:1;transform:translateY(0);}}
+
+    /* ✨ Hiệu ứng “karaoke” từng dòng */
+    .fade-line{opacity:0;transform:translateY(20px);animation:fadeUp 1.5s ease forwards;}
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+    .delay-1{animation-delay:2s}
+    .delay-2{animation-delay:4s}
+    .delay-3{animation-delay:6s}
+    .delay-4{animation-delay:8s}
 
     footer{text-align:center;padding:2rem;color:#fff;opacity:.8}
 
-    /* 🌺 Ảnh trang trí ngoài lá thư */
-    .decor{
-      position:absolute;width:120px;opacity:0.8;z-index:1;pointer-events:none;
-      filter:drop-shadow(0 6px 8px rgba(0,0,0,0.1));
-    }
+    /* 🌺 Ảnh trang trí */
+    .decor{position:absolute;width:120px;opacity:0.85;z-index:1;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,0.1));}
     .decor-left{top:25%;left:4%;transform:rotate(-10deg);}
     .decor-right{top:35%;right:5%;transform:rotate(15deg);}
-	/* 💫 Hiệu ứng xuất hiện kiểu karaoke */
-.fade-line {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1.6s ease forwards;
-}
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* ⏳ Các đoạn xuất hiện nối tiếp */
-.delay-1 { animation-delay: 2s; }
-.delay-2 { animation-delay: 4s; }
-.delay-3 { animation-delay: 6s; }
-.delay-4 { animation-delay: 8s; }
-
   </style>
 </head>
 <body class="stage-1">
   <div id="stage1">
-  <p style="color:#fff;font-weight:600">✨ Thư gửi Lê Trần Phương Anh</p>
+    <p style="color:#fff;font-weight:600">✨ Thư gửi Lê Trần Phương Anh</p>
     <div class="envelope" id="envelope">
       <div class="flap"></div>
       <div class="heart"></div>
-      <div class="letter" >💌 Nhấn để mở thư</div>
+      <div class="letter">💌 Nhấn để mở thư</div>
       <div class="paper-sheet"></div>
     </div>
-    
   </div>
 
   <div id="stage2">
-    <!-- Nhạc nền YouTube -->
+    <!-- 🎵 Nhạc nền -->
     <div id="yt-player"></div>
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <header>
       <div>
         <h1>💖 Thư gửi Phương Anh 20/10 💖</h1>
-		<p style="color:#fff;font-weight:600">Ngày mà chúng mình yêu nhau 31/12/2023</p>
+        <p style="color:#fff;font-weight:600">Ngày mà chúng mình yêu nhau 31/12/2023</p>
         <div class="counter">
           <div class="tile"><strong id="days">0</strong>Ngày</div>
           <div class="tile"><strong id="hours">00</strong>Giờ</div>
@@ -127,7 +109,7 @@
       </div>
     </header>
 
-    <!-- 🌸 Ảnh trang trí hai bên -->
+    <!-- 🌸 Ảnh trang trí -->
     <img style="
     margin-top: 325px;
 " src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-1/559230484_1322545229341622_6340495170901957417_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=101&ccb=1-7&_nc_sid=1d2534&_nc_ohc=T0euFaALyE4Q7kNvwEONrLv&_nc_oc=Adn46qjySi910pcee5YOKLq-Z2wo-BXZoUIP6qC7CJBgcIfa8sTFS49IPMXfV9cGxDRONpYPlkL9EqtIMpr6Kiaq&_nc_zt=24&_nc_ht=scontent.fsgn2-4.fna&_nc_gid=tDZs3Zx_622ZjwCw1UpxAg&oh=00_AfeAr_G7Cm9Kt7iIGyTYIG1crSVVOQJYAnRLP9PF8N5VeQ&oe=68FB8306" alt="Hoa trang trí" class="decor decor-left">
@@ -136,21 +118,20 @@
 " src="https://s120-ava-talk.zadn.vn/d/d/d/4/26/120/e7e0a4756f6399704fae4a0d3bd3b35b.jpg" alt="Hoa trang trí" class="decor decor-right">
 
     <section id="letter-section">
-  <div class="letter-body">
-    <h2 style="text-align:center;color:var(--accent)">💌 Lá Thư Yêu Thương 20/10</h2>
+      <div class="letter-body">
+        <h2 style="text-align:center;color:var(--accent)">💌 Lá Thư Yêu Thương 20/10</h2>
 
-    <p class="fade-line">Gửi đến em – người phụ nữ mạnh mẽ và đáng yêu nhất. Hôm nay, giữa nhịp sống vội vàng, anh muốn dành một khoảng lặng thật mềm để nói rằng: “Cảm ơn em vì đã luôn ở đây.”</p>
+        <p class="fade-line">Gửi đến em – người phụ nữ mạnh mẽ và đáng yêu nhất. Hôm nay, giữa nhịp sống vội vàng, anh muốn dành một khoảng lặng thật mềm để nói rằng: “Cảm ơn em vì đã luôn ở đây.”</p>
 
-    <p class="fade-line delay-1">Đã bao ngày trôi qua kể từ 31/12/2023, từng giờ từng phút đều là minh chứng cho yêu thương, cho những nụ cười và cả những giọt nước mắt ta cùng đi qua. Anh không hứa về một tương lai xa xôi, chỉ muốn nắm tay em trong hiện tại – nơi có ánh hoàng hôn, tiếng gió nhẹ, và ánh mắt em lung linh như buổi chiều đầu gặp gỡ.</p>
+        <p class="fade-line delay-1">Đã bao ngày trôi qua kể từ 31/12/2023, từng giờ từng phút đều là minh chứng cho yêu thương, cho những nụ cười và cả những giọt nước mắt ta cùng đi qua. Anh không hứa về một tương lai xa xôi, chỉ muốn nắm tay em trong hiện tại – nơi có ánh hoàng hôn, tiếng gió nhẹ, và ánh mắt em lung linh như buổi chiều đầu gặp gỡ.</p>
 
-    <p class="fade-line delay-2">20/10 – không chỉ là ngày để tặng hoa, mà là ngày để nhắc lại: có một người vẫn luôn dõi theo, vẫn luôn thấy em đẹp dù năm tháng có trôi đi. Chúc em an yên, hạnh phúc và luôn được yêu thương bằng tất cả những gì dịu dàng nhất trên đời.</p>
-	
-	<p class="fade-line delay-3">Chúc cô gái của anh ngày càng mạnh khỏe yêu thương anh nhiều hơn , trưởng thành hơn , giàu hơn , và mỏ không còn hỗn nữa...</p>
-	
-    <p class="fade-line delay-4" style="margin:.6rem 0 0">Thương gửi,<br><em>Một người luôn yêu thương em</em></p>
-  </div>
-</section>
+        <p class="fade-line delay-2">20/10 – không chỉ là ngày để tặng hoa, mà là ngày để nhắc lại: có một người vẫn luôn dõi theo, vẫn luôn thấy em đẹp dù năm tháng có trôi đi. Chúc em an yên, hạnh phúc và luôn được yêu thương bằng tất cả những gì dịu dàng nhất trên đời.</p>
 
+        <p class="fade-line delay-3">Chúc cô gái của anh ngày càng mạnh khỏe, yêu thương anh nhiều hơn, trưởng thành hơn, giàu hơn, và mỏ không còn hỗn nữa...</p>
+
+        <p class="fade-line delay-4" style="margin:.6rem 0 0">Thương gửi,<br><em>Một người luôn yêu thương em</em></p>
+      </div>
+    </section>
 
     <footer>Made with ❤ for 20/10</footer>
   </div>
@@ -160,11 +141,12 @@
     const env=document.getElementById('envelope');
     const paper=document.querySelector('.paper-sheet');
     let ytPlayer;
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('yt-player', {
-        height: '0', width: '0',
-        videoId: '05D-eNzDC_M',
-        playerVars: {autoplay:0,controls:0,loop:1,playlist:'05D-eNzDC_M',modestbranding:1,rel:0},
+
+    function onYouTubeIframeAPIReady(){
+      ytPlayer=new YT.Player('yt-player',{
+        height:'0',width:'0',
+        videoId:'05D-eNzDC_M',
+        playerVars:{autoplay:0,controls:0,loop:1,playlist:'05D-eNzDC_M',modestbranding:1,rel:0},
       });
     }
 
@@ -174,13 +156,17 @@
       setTimeout(()=>{
         body.classList.remove('stage-1');
         body.classList.add('stage-2','show-letter');
-        // ✅ Chỉ cuộn nhẹ để thấy đồng hồ
-        window.scrollTo({ top: window.innerHeight * 0.6, behavior: 'smooth' });
-        if(ytPlayer&&typeof ytPlayer.playVideo==='function'){ytPlayer.setVolume(25);ytPlayer.playVideo();}
+        // 🎵 phát nhạc khi mở thư
+        if(ytPlayer&&typeof ytPlayer.playVideo==='function'){
+          ytPlayer.setVolume(25);
+          try{ytPlayer.playVideo();}catch(e){setTimeout(()=>ytPlayer.playVideo(),500);}
+        }
+        // 🌸 cuộn chậm để thấy đồng hồ và ảnh
+        window.scrollTo({top:window.innerHeight*0.6,behavior:'smooth'});
       },2200);
     });
 
-    // Đồng hồ yêu thương
+    // ⏰ Đồng hồ yêu thương
     window.addEventListener('DOMContentLoaded',()=>{
       const startDate=new Date(2023,11,31,0,0,0);
       const d=document.getElementById('days'),h=document.getElementById('hours'),m=document.getElementById('minutes'),s=document.getElementById('seconds');
@@ -198,4 +184,3 @@
   </script>
 </body>
 </html>
-
